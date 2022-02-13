@@ -6,8 +6,8 @@ from dotenv import load_dotenv
 from time import sleep
 
 load_dotenv()
-TOKEN = os.environ('DISCORD_TOKEN')
-GUILD = os.environ('DISCORD_GUILD')
+TOKEN = os.environ['DISCORD_TOKEN']
+GUILD = os.environ['DISCORD_GUILD']
 
 client = discord.Client()
 
