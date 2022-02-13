@@ -1,7 +1,8 @@
+import os
 from googleapiclient.discovery import build
 from numpy import require
 
-api_key='AIzaSyDL4YxztyWkETWxkNAHA1Uin66Y7ovpGQg'
+api_key= os.environ["YOUTUBE_API_KEY"]
 
 scopes = ["https://www.googleapis.com/auth/youtube.readonly"]
 
