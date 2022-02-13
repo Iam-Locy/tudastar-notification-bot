@@ -2,7 +2,6 @@
 import os
 from datetime import datetime
 import discord
-from dotenv import load_dotenv
 from time import sleep
 
 load_dotenv()
