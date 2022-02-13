@@ -4,7 +4,6 @@ from datetime import datetime
 import discord
 from time import sleep
 
-load_dotenv()
 TOKEN = os.environ['DISCORD_TOKEN']
 GUILD = os.environ['DISCORD_GUILD']
 
