@@ -1,7 +1,8 @@
 import os
 import json
 import datetime
-from time import sleep
+import asyncio
+import signal
 
 import discord
 from googleapiclient.discovery import build
@@ -114,10 +115,10 @@ def main():
                         await channel.send(video)
             
             print("Next loop in 15 mins.")
-            sleep(900)
+            await asyncio.sleep(900)
 
-        
 
+    signal.signal(signal.SIGTERM, lambda *_: client.loop.create_task(client.close()))
     client.run(TOKEN)
 
 
