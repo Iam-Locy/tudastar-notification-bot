@@ -70,8 +70,11 @@ def getMostRecent(id):
 
 def getSubjectChannels(client, playlists):
     guild = discord.utils.get(client.guilds, name=GUILD.replace("_"," "))
-    channels = list(filter(lambda channel: channel.category !=
-                    None and channel.category.name == "Text Channels", guild.channels))
+    channels = []
+
+    for channel in guild.channels:
+        if channel.category != None and channel.category.name.lower() == "text channels":
+            channels.append(channel)
     channels = list(filter(lambda channel: channel.name in playlists, channels))
 
     return channels
