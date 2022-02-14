@@ -1,25 +1,113 @@
-# bot.py
 import os
-from datetime import datetime
-import discord
+import json
+import datetime
 from time import sleep
 
+import discord
+from googleapiclient.discovery import build
+
+YOUTUBE = build('youtube', 'v3', developerKey=os.environ["YOUTUBE_API_KEY"])
 TOKEN = os.environ['DISCORD_TOKEN']
 GUILD = os.environ['DISCORD_GUILD']
 
-client = discord.Client()
 
-@client.event
-async def on_ready():
-    print(f'{client.user.name} has connected to Discord!')
+def checkPlaylistChange(playlist):
+    request = YOUTUBE.playlists().list(
+        part='contentDetails',
+        id=playlist["id"]
+    )
 
+    response = request.execute()
+
+    etag = response['items'][0]['etag']
+
+    return {"result": playlist["etag"] != etag, "etag": etag}
+
+
+def writeEtagChange(playlists, playlist, etag):
+
+    playlists[playlist]["etag"] = etag
+
+    newFile = json.dumps(playlists)
+
+    with open("playlists.json", 'w') as f:
+        f.write(newFile)
+
+
+def getMostRecent(id):
+    request = YOUTUBE.playlistItems().list(
+        part='contentDetails',
+        playlistId=id
+    )
+
+    response = request.execute()['items']
+    videos = []
+
+    for item in response:
+
+        if 'videoPublishedAt' in item['contentDetails']:
+            videos.append(item)
+
+    mostRecentUpload = {
+        "date": None,
+        "id": ""
+    }
+
+    for video in videos:
+        if mostRecentUpload['date'] == None:
+            mostRecentUpload['date'] = datetime.datetime.fromisoformat(
+                video['contentDetails']['videoPublishedAt'][:-1])
+            mostRecentUpload['id'] = video['contentDetails']['videoId']
+
+        elif datetime.datetime.fromisoformat(video['contentDetails']['videoPublishedAt'][:-1]) > mostRecentUpload["date"]:
+            mostRecentUpload['date'] = datetime.datetime.fromisoformat(
+                video['contentDetails']['videoPublishedAt'][:-1])
+            mostRecentUpload['id'] = video['contentDetails']['videoId']
+
+    return f'https://www.youtube.com/watch?v={mostRecentUpload["id"]}'
+
+def getSubjectChannels(client, playlists):
     guild = discord.utils.get(client.guilds, name=GUILD)
-    channel = discord.utils.get(guild.channels, name='general')
+    channels = list(filter(lambda channel: channel.category !=
+                    None and channel.category.name == "Text Channels", guild.channels))
+    channels = list(filter(lambda channel: channel.name in playlists, channels))
 
-    while True:
-        time = datetime.now()
-        await channel.send(f'{time.hour} : {time.minute}')
-        sleep(60)
+    return channels
+
+def main():
+
+    client = discord.Client()
+
+    with open('./playlists.json', 'r') as f:
+        playlists = json.load(f)
+
+    @client.event
+    async def on_ready():
+        print(f'{client.user.name} has connected to Discord!')
+
+        channels = getSubjectChannels(client, playlists)
+
+        while True:
+
+            for channel in channels:
+                playlist = playlists[channel.name]
+
+                playlistChange = checkPlaylistChange(playlist)
+
+                if playlistChange["result"]:
+                    writeEtagChange(playlists, channel.name, playlistChange["etag"])
+
+                    video = getMostRecent(playlist["id"])
+
+                    await channel.send(f'Bővült a Tudástár {playlist["name"]} tárgyból')
+                    await channel.send(video)
+            
+            sleep(1800)
+
+        
+
+    client.run(TOKEN)
 
 
-client.run(TOKEN)
+if __name__ == "__main__":
+    main()
