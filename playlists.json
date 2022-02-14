@@ -1,1 +1,108 @@
-{"szerves-k\u00e9mia": {"id": "PLRTe9rm0dSWNEgzAHvl8tAN91Dz1oor0A", "etag": "", "name": "Szerves k\u00e9mia"}, "\u00e1nstf": {"id": "PLRTe9rm0dSWOJsnCh9xm8N1YZK1FI8ZaI", "etag": "", "name": "\u00c1llati strukt\u00fara \u00e9s funkci\u00f3"}, "mine": {"id": "UUEgTaapijGRso774hymJuiw", "etag": "u_NV181qP7_zVciEUwG6W_hydv0", "name": "Pr\u00f3ba"}, "general": {"id": "UUEgTaapijGRso774hymJuiw", "etag": "u_NV181qP7_zVciEUwG6W_hydv0", "name": "Pr\u00f3ba"}}
+{
+  "fizk\u00e9m": {
+    "sources": [
+      { "id": "", "etag": "", "name": "Fizikai k\u00e9mia biol\u00f3gusoknak" }
+    ]
+  },
+  "szerves-k\u00e9mia": {
+    "sources": [
+      {
+        "id": "PLRTe9rm0dSWNEgzAHvl8tAN91Dz1oor0A",
+        "etag": "",
+        "name": "Szerves k\u00e9mia"
+      }
+    ]
+  },
+  "biometria": {
+    "sources": [
+      {
+        "id": "",
+        "etag": "",
+        "name": "Biometria \u00e9s alapoz\u00f3 biostatisztika"
+      }
+    ]
+  },
+  "bioetika": {
+    "sources": [
+      {
+        "id": "PLRTe9rm0dSWMAwDHK8tXKLpnD-yRhuJIt",
+        "etag": "",
+        "name": "Bioetika \u00e9s kutat\u00e1s m\u00f3dszertan"
+      }
+    ]
+  },
+  "sejtbiosz": {
+    "sources": [
+      {
+        "id": "PLRTe9rm0dSWOynbj6XkSEriy6BuvPDrJP",
+        "etag": "",
+        "name": "Sejtbiol\u00f3gia"
+      }
+    ]
+  },
+  "bev-lab": {
+    "sources": [
+      {
+        "id": "",
+        "etag": "",
+        "name": "Bevezet\u00e9s a laborat\u00f3riumi gyakorlatba"
+      }
+    ]
+  },
+  "\u00e9l\u0151vil\u00e1g-sokf\u00e9les\u00e9ge": {
+    "sources": [
+      {
+        "id": "PLRTe9rm0dSWNgAbygHRWfYBFTnCP4p8XZ",
+        "etag": "",
+        "name": "\u00c9l\u0151vil\u00e1g sokf\u00e9les\u00e9ge 1"
+      },
+      {
+        "id": "",
+        "etag": "",
+        "name": "\u00c9l\u0151vil\u00e1g sokf\u00e9les\u00e9ge 2"
+      }
+    ]
+  },
+  "\u00e1nstf": {
+    "sources": [
+      {
+        "id": "PLRTe9rm0dSWOJsnCh9xm8N1YZK1FI8ZaI",
+        "etag": "",
+        "name": "\u00c1llati strukt\u00fara \u00e9s funkci\u00f3"
+      },
+      {
+        "id": "PLRTe9rm0dSWMXxAhdwgSutuXr4sZvijbx",
+        "etag": "",
+        "name": "N\u00f6v\u00e9nyi strukt\u00fara \u00e9s funkci\u00f3"
+      }
+    ]
+  },
+  "etol\u00f3gia": {
+    "sources": [{ "id": "-yRhuJIt", "etag": "", "name": "Etol\u00f3gia" }]
+  },
+  "mikrobi": {
+    "sources": [{ "id": "", "etag": "", "name": "Mikrobiol\u00f3gia" }]
+  },
+  "hidrobio": {
+    "sources": [{ "id": "", "etag": "", "name": "Hidrobiol\u00f3gia" }]
+  },
+  "mine": {
+    "sources": [
+      { "id": "", "etag": "", "name": "Pr\u00f3ba" },
+      {
+        "id": "PLRTe9rm0dSWMAwDHK8tXKLpnD-yRhuJIt",
+        "etag": "",
+        "name": "Pr\u00f3ba 2"
+      }
+    ]
+  },
+  "general": {
+    "sources": [
+      {
+        "id": "UUEgTaapijGRso774hymJuiw",
+        "etag": "",
+        "name": "Pr\u00f3ba"
+      }
+    ]
+  }
+}

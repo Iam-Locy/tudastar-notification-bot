@@ -24,9 +24,11 @@ def checkPlaylistChange(playlist):
     return {"result": playlist["etag"] != etag, "etag": etag}
 
 
-def writeEtagChange(playlists, playlist, etag):
+def writeEtagChange(playlists, playlist, etag, playlistId):
 
-    playlists[playlist]["etag"] = etag
+    for index, source in enumerate(playlists[playlist]["sources"]):
+        if source["id"] == playlistId:
+            playlists[playlist]["sources"][index]["etag"] = etag
 
     newFile = json.dumps(playlists)
 
@@ -79,30 +81,36 @@ def main():
     client = discord.Client()
 
     with open('./playlists.json', 'r') as f:
-        playlists = json.load(f)
+        playlistSources = json.load(f)
 
     @client.event
     async def on_ready():
         print(f'{client.user.name} has connected to Discord!')
 
-        channels = getSubjectChannels(client, playlists)
+        channels = getSubjectChannels(client, playlistSources)
 
         while True:
 
             for channel in channels:
-                playlist = playlists[channel.name]
 
-                playlistChange = checkPlaylistChange(playlist)
+                
+                sources = playlistSources[channel.name]
 
-                if playlistChange["result"]:
-                    writeEtagChange(playlists, channel.name, playlistChange["etag"])
+                for playlist in sources["sources"]:
 
-                    video = getMostRecent(playlist["id"])
+                    if playlist["id"] == "": continue
 
-                    await channel.send(f'Bővült a Tudástár {playlist["name"]} tárgyból')
-                    await channel.send(video)
+                    playlistChange = checkPlaylistChange(playlist)
+
+                    if playlistChange["result"]:
+                        writeEtagChange(playlistSources, channel.name, playlistChange["etag"], playlist["id"])
+
+                        video = getMostRecent(playlist["id"])
+
+                        await channel.send(f'Bővült a Tudástár {playlist["name"]} tárgyból')
+                        await channel.send(video)
             
-            sleep(1800)
+            sleep(10)
 
         
 
