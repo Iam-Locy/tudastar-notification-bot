@@ -118,7 +118,7 @@ def main():
             await asyncio.sleep(900)
 
 
-   
+    signal.signal(signal.SIGTERM, lambda *_: client.loop.create_task(client.close()))
     client.run(TOKEN)
 
 
