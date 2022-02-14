@@ -113,6 +113,7 @@ def main():
                         await channel.send(f'Bővült a Tudástár {playlist["name"]} tárgyból')
                         await channel.send(video)
             
+            print("Next loop in 15 mins.")
             sleep(900)
 
         
