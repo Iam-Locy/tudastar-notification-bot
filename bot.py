@@ -110,7 +110,7 @@ def main():
                         await channel.send(f'Bővült a Tudástár {playlist["name"]} tárgyból')
                         await channel.send(video)
             
-            sleep(10)
+            sleep(900)
 
         
 
