@@ -8,7 +8,7 @@
     "sources": [
       {
         "id": "PLRTe9rm0dSWNEgzAHvl8tAN91Dz1oor0A",
-        "etag": " ",
+        "etag": "",
         "name": "Szerves k\u00e9mia"
       }
     ]
@@ -78,7 +78,7 @@
     ]
   },
   "etol\u00f3gia": {
-    "sources": [{ "id": "-yRhuJIt", "etag": "", "name": "Etol\u00f3gia" }]
+    "sources": [{ "id": "", "etag": "", "name": "Etol\u00f3gia" }]
   },
   "mikrobi": {
     "sources": [{ "id": "", "etag": "", "name": "Mikrobiol\u00f3gia" }]
@@ -93,15 +93,6 @@
         "id": "PLRTe9rm0dSWMAwDHK8tXKLpnD-yRhuJIt",
         "etag": "",
         "name": "Pr\u00f3ba 2"
-      }
-    ]
-  },
-  "general": {
-    "sources": [
-      {
-        "id": "UUEgTaapijGRso774hymJuiw",
-        "etag": "",
-        "name": "Pr\u00f3ba"
       }
     ]
   }
