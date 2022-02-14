@@ -69,7 +69,7 @@ def getMostRecent(id):
     return f'https://www.youtube.com/watch?v={mostRecentUpload["id"]}'
 
 def getSubjectChannels(client, playlists):
-    guild = discord.utils.get(client.guilds, name=GUILD)
+    guild = discord.utils.get(client.guilds, name=GUILD.replace("_"," "))
     channels = list(filter(lambda channel: channel.category !=
                     None and channel.category.name == "Text Channels", guild.channels))
     channels = list(filter(lambda channel: channel.name in playlists, channels))
